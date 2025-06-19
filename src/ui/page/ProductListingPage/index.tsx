@@ -1,10 +1,9 @@
 import NavList from "../../component/TopNavbar";
-import {useLocation} from "@tanstack/react-router";
 import {Container} from "react-bootstrap";
 import ProductCardContainer from "./component/ProductCardContainer.tsx";
 
 export default function ProductListingPage() {
-  const location = useLocation();
+  // const location = useLocation();
 
   return (
     <div className="product-listing-container">
