@@ -9,9 +9,8 @@ export default function ProductListingPage() {
   return (
     <div className="product-listing-container">
       <NavList/>
-      <h1> Product Listing Page!</h1>
-      <h3>Pathname: {location.pathname} </h3>
-
+      {/*<h1> Product Listing Page!</h1>*/}
+      {/*<h3>Pathname: {location.pathname} </h3>*/}
       <Container>
         <ProductCardContainer/>
       </Container>

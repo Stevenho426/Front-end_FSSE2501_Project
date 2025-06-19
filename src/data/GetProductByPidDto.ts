@@ -1,4 +1,4 @@
-export interface GetProductByPIDDto {
+export interface GetProductByPidDto {
   pid:         number;
   name:        string;
   description: string;

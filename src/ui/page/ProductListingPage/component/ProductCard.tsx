@@ -4,6 +4,7 @@ import {Link} from "@tanstack/react-router";
 
 type Props ={
   getAllProductDto:GetAllProductDto;
+  pid:string;
 }
 
 export default function ProductCard ({getAllProductDto}:Props) {

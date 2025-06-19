@@ -1,3 +1,5 @@
+import {Button} from "react-bootstrap";
+
 type Props = {
   handleQuantityMinusOne:()=>void;
   handleQuantityPlusOne:()=>void;
@@ -10,11 +12,11 @@ export default function QuantitySelector ({handleQuantityMinusOne, handleQuantit
   return (
 
       <div className="d-flex quantity-selector" >
-        <button onClick={handleQuantityMinusOne} className="decrease">--</button>
-        <input type="number" className="quantity" defaultValue={1} min={1}>
+        <Button onClick={handleQuantityMinusOne} className="decrease">-</Button>
+        <div className="quantity" defaultValue={1}>
           {quantity}
-        </input>
-        <button onClick={handleQuantityPlusOne} className="increase">++</button>
+        </div>
+        <Button onClick={handleQuantityPlusOne} className="increase">+</Button>
       </div>
 
   )

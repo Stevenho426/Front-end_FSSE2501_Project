@@ -1,15 +1,22 @@
 import {Stack} from "react-bootstrap";
 import mockData from "../response.json"
 import QuantitySelector from "../../../component/QuantitySelector";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import type {GetProductByPidDto} from "../../../../data/GetProductByPidDto.ts";
+import * as ProductApi from "../../../../api/ProductApi.tsx"
 
+type Props = {
+  pid:string;
+}
 
-export default function ProductDetailContainer () {
+export default function ProductDetailContainer ({pid}:Props) {
 
+  const [getProductByPidDto, setGetProductByPidDto] = useState<GetProductByPidDto|undefined>(undefined);
   const [quantity, setQuantity] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleQuantityMinusOne = ()=>{
-    if(quantity>0){
+    if(quantity>1){
       setQuantity(quantity-1);
     }
   }
@@ -20,20 +27,33 @@ export default function ProductDetailContainer () {
     }
   }
 
-  return (
+  const getProductByPid = async ()=>{
+    setIsLoading(true);
+    const responseData = await ProductApi.getProductByPid(pid);
+    setGetProductByPidDto(responseData);
+    setIsLoading(false);
+  }
 
+  useEffect(() => {
+      getProductByPid();
+
+  }, []);
+
+  return (
+    (
+      getProductByPidDto  && !isLoading &&
     <Stack gap={3}>
       <div>
-        <img src={mockData.imageUrl}/>
+        <img src={getProductByPidDto.imageUrl}/>
       </div>
       <div className="p-2">
-        <h1>{mockData.name}</h1>
+        <h1>{getProductByPidDto.name}</h1>
       </div>
       <div className="p-2">
-        {mockData.description}
+        {getProductByPidDto.description}
       </div>
       <div className="p-2">
-       Price: ${mockData.price.toLocaleString()}
+        Price: ${getProductByPidDto.price.toLocaleString()}
       </div>
       <div>
         <
@@ -44,11 +64,9 @@ export default function ProductDetailContainer () {
         />
       </div>
       <div className="p-2">
-        {mockData.stock}
+        {getProductByPidDto.stock}
       </div>
-
     </Stack>
+    ))
 
-
-  )
 }
