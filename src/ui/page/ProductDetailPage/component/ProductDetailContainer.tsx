@@ -1,9 +1,10 @@
-import {Stack} from "react-bootstrap";
+import {Button, Stack} from "react-bootstrap";
 import mockData from "../response.json"
 import QuantitySelector from "../../../component/QuantitySelector";
 import {useEffect, useState} from "react";
 import type {GetProductByPidDto} from "../../../../data/GetProductByPidDto.ts";
 import * as ProductApi from "../../../../api/ProductApi.tsx"
+import {useNavigate} from "@tanstack/react-router";
 
 type Props = {
   pid:string;
@@ -14,6 +15,7 @@ export default function ProductDetailContainer ({pid}:Props) {
   const [getProductByPidDto, setGetProductByPidDto] = useState<GetProductByPidDto|undefined>(undefined);
   const [quantity, setQuantity] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate({from: '/product/$productId'})
 
   const handleQuantityMinusOne = ()=>{
     if(quantity>1){
@@ -28,10 +30,14 @@ export default function ProductDetailContainer ({pid}:Props) {
   }
 
   const getProductByPid = async ()=>{
-    setIsLoading(true);
-    const responseData = await ProductApi.getProductByPid(pid);
-    setGetProductByPidDto(responseData);
-    setIsLoading(false);
+    try{
+      setIsLoading(true);
+      const responseData = await ProductApi.getProductByPid(pid);
+      setGetProductByPidDto(responseData);
+      setIsLoading(false);
+    }catch {
+      navigate({to: '/error'});
+    }
   }
 
   useEffect(() => {
@@ -55,16 +61,17 @@ export default function ProductDetailContainer ({pid}:Props) {
       <div className="p-2">
         Price: ${getProductByPidDto.price.toLocaleString()}
       </div>
-      <div>
+      <div className="d-flex">
         <
           QuantitySelector
           handleQuantityMinusOne={handleQuantityMinusOne}
           handleQuantityPlusOne={handleQuantityPlusOne}
           quantity={quantity}
         />
+        <Button className="mx-3 p-2">Add to Cart</Button>
       </div>
       <div className="p-2">
-        {getProductByPidDto.stock}
+        Stock Status: {getProductByPidDto.stock}
       </div>
     </Stack>
     ))

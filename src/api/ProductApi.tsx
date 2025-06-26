@@ -6,18 +6,28 @@ const baseUrl = "http://localhost:8080/"
 
 export async function getAllProduct() {
 
-  const response = await axios.get<GetAllProductDto[]>(
-    `${baseUrl}public/products`);
+  try{
+    const response = await axios.get<GetAllProductDto[]>(
+      `${baseUrl}public/products`);
 
-    return response.data;
+      return response.data;
+  }catch (e) {
+    console.log("Error fetching product details: ", e);
+    throw e;
+  }
 
 }
 
 export async function getProductByPid(pid:string) {
 
-  const response = await axios.get<GetProductByPidDto>(
-    `${baseUrl}public/products/${pid}`);
+  try{
 
-    return response.data;
+    const response = await axios.get<GetProductByPidDto>(
+      `${baseUrl}public/products/${pid}`);
 
+      return response.data;
+  }catch (e){
+    console.log("Error fetching product details: ", e);
+    throw e;
+  }
 }

@@ -3,6 +3,9 @@ import type {GetAllProductDto} from "../../../../data/GetAllProductDto.ts";
 import {Col, Container, Row} from "react-bootstrap"
 import ProductCard from "./ProductCard.tsx";
 import * as ProductApi from "../../../../api/ProductApi.tsx";
+import LoadingContainer from "../../../component/LoadingContainer";
+import {Link} from "@tanstack/react-router";
+
 
 
 export default function ProductCardContainer () {
@@ -24,21 +27,52 @@ export default function ProductCardContainer () {
 
   return (
    <>
-     {!isLoading && getAllProductDtoList &&
      <Container className="mt-3">
        <Row>
-       {getAllProductDtoList.map((getAllProductDto:GetAllProductDto)=>(
-         <Col key={getAllProductDto.pid}>
-          <ProductCard getAllProductDto={getAllProductDto} pid={getAllProductDto.pid.toString()} />
-         </Col>
-       ))}
-       </Row>
-     </Container>
-     }
+          {isLoading ? (
 
+           Array.from({length:8}).map(()=> (
+            <Col sm={6} md={4} lg={3} className="mb-4">
+              <LoadingContainer/>
+            </Col>
+
+          ))): getAllProductDtoList? (
+
+          getAllProductDtoList.map((getAllProductDto:GetAllProductDto)=>(
+            <Col sm={6} md={4} lg={3} className="mb-4">
+              <ProductCard getAllProductDto={getAllProductDto} pid={getAllProductDto.pid.toString()} />
+            </Col>
+          ))) : (
+            <Link to="/error"/>
+            )
+          }
+         </Row>
+       </Container>
    </>
-
-
   )
+
+
+  // return (
+  //  <>
+  //    {!isLoading && getAllProductDtoList ? (
+  //      <Container className="mt-3">
+  //        <Row>
+  //        {getAllProductDtoList.map((getAllProductDto:GetAllProductDto)=>(
+  //          <Col key={getAllProductDto.pid} >
+  //           <ProductCard getAllProductDto={getAllProductDto} pid={getAllProductDto.pid.toString()} />
+  //          </Col>
+  //        ))}
+  //        </Row>
+  //      </Container>
+  //      ):
+  //      (
+  //       <LoadingContainer/>
+  //     )
+  //   }
+  //
+  //  </>
+  //
+  //
+  // )
 
 }
