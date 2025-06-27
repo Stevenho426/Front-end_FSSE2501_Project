@@ -64,11 +64,6 @@ export default function TopNavbar() {
               Product
             </Link>
           </NavItem>
-          <NavItem>
-              <Link to='/' className="text-white p-4 align-bottom text-decoration-none">
-                Shopping Cart
-              </Link>
-          </NavItem>
         </Nav>
         <Nav >
           <NavItem className="ms-auto justify-content-end">
