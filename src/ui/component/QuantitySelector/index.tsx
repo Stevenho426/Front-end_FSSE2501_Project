@@ -11,10 +11,12 @@ export default function QuantitySelector ({handleQuantityMinusOne, handleQuantit
 
   return (
 
-      <div className="d-flex quantity-selector" >
+      <div className="d-flex quantity-selector align-items-baseline" >
         <Button onClick={handleQuantityMinusOne} className="decrease mx-1">-</Button>
         <div className="quantity mx-1 p-1" defaultValue={1}>
-          {quantity}
+          <div >
+            {quantity}
+          </div>
         </div>
         <Button onClick={handleQuantityPlusOne} className="increase mx-1">+</Button>
       </div>

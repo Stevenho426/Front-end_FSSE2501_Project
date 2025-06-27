@@ -23,7 +23,7 @@ export default function ProductCard ({getAllProductDto}:Props) {
           params={{
             productId: getAllProductDto.pid.toString()
           }}>
-        <Button variant="primary">Go somewhere</Button>
+        <Button variant="primary">Details</Button>
         </Link>
       </Card.Body>
     </Card>

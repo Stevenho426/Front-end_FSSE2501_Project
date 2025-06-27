@@ -1,10 +1,57 @@
 import {Link} from "@tanstack/react-router";
-import {Container, Nav, Navbar, NavItem} from "react-bootstrap";
+import {Button, Container, Nav, Navbar, NavItem} from "react-bootstrap";
+import {useContext} from "react";
+import {LoginUserContext} from "../../../../context/loginUserContext.ts";
+import * as FirebaseAuthService from "../../../authService/FirebaseAuthService.ts"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCartShopping} from "@fortawesome/free-solid-svg-icons";
 
 export default function TopNavbar() {
+
+  const loginUser = useContext(LoginUserContext);
+
+  const handleLogout = async ()=>{
+    await FirebaseAuthService.signOut();
+  }
+
+  const renderLoginButton = ()=>{
+    if(loginUser) {
+      return (
+        <div className="d-flex align-items-baseline">
+          <div className="mx-1">
+            <Button>
+              <FontAwesomeIcon icon={faCartShopping} style={{color: "#ffffff",}} />
+            </Button>
+          </div>
+          <div className="mx-1 text-white">
+            {loginUser?.email}
+          </div>
+          <div className="mx-1">
+            <Button onClick={handleLogout}>
+              Logout
+            </Button>
+          </div>
+        </div>
+      )
+    }else if (loginUser===undefined){
+        return (
+          <></>
+        )
+      } else {
+        return (
+          <
+            Link to='/login'
+                 className="text-white p-4 align-bottom text-decoration-none "
+          >
+            Login
+          </Link>
+          )
+      }
+    }
+
   return (
 
-    <Navbar bg="secondary gradient" data-bs-theme="dark">
+    <Navbar bg="secondary gradient" data-bs-theme="dark" >
       <Container>
         <Navbar.Brand >
           <Link to='/' className="text-white p-4 align-bottom text-decoration-none">
@@ -18,17 +65,14 @@ export default function TopNavbar() {
             </Link>
           </NavItem>
           <NavItem>
-            <Link to='/' className="text-white p-4 align-bottom text-decoration-none">
-              Shopping Cart
-            </Link>
+              <Link to='/' className="text-white p-4 align-bottom text-decoration-none">
+                Shopping Cart
+              </Link>
           </NavItem>
-          <NavItem>
-            <
-              Link to='/login'
-                   className="text-white p-4 align-bottom text-decoration-none justify-content-end"
-            >
-              Login
-            </Link>
+        </Nav>
+        <Nav >
+          <NavItem className="ms-auto justify-content-end">
+            {renderLoginButton()}
           </NavItem>
         </Nav>
       </Container>
