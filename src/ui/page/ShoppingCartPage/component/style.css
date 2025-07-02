@@ -1,0 +1,16 @@
+.table-horizontal-only td,
+.table-horizontal-only th {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.total-row td {
+    border-top: 1px solid #dee2e6 !important;
+}
+
+.normal-row td{
+    padding-top: 12px;
+    padding-bottom: 12px;
+}

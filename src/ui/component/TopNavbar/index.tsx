@@ -19,9 +19,11 @@ export default function TopNavbar() {
       return (
         <div className="d-flex align-items-baseline">
           <div className="mx-1">
-            <Button>
-              <FontAwesomeIcon icon={faCartShopping} style={{color: "#ffffff",}} />
-            </Button>
+            <Link to='/shoppingcart'>
+              <Button>
+                <FontAwesomeIcon icon={faCartShopping} style={{color: "#ffffff",}} />
+              </Button>
+            </Link>
           </div>
           <div className="mx-1 text-white">
             {loginUser?.email}

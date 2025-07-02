@@ -1,15 +1,36 @@
-import NavList from "../../component/TopNavbar";
-import {useLocation} from "@tanstack/react-router";
+import TopNavbar from "../../component/TopNavbar";
+import {Container} from "react-bootstrap";
+import CartTable from "./component/CartTable.tsx";
+import {useNavigate, useRouterState} from "@tanstack/react-router";
+import {useContext, useEffect} from "react";
+import {LoginUserContext} from "../../../../context/loginUserContext.ts";
+
 
 export default function ShoppingCartPage() {
-  const location = useLocation();
+
+  const loginUser = useContext(LoginUserContext);
+  const {location}=useRouterState();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+
+      if(!loginUser){
+        navigate({
+          to: "/login",
+          search: { redirect: location.pathname },
+        });
+      }
+  }, [loginUser]);
+
 
   return (
-    <div className="shopping-cart-container">
-      <NavList/>
-      <h1>Shopping Cart Page!</h1>
-      <h3>Pathname: {location.pathname} </h3>
 
+    <div className="shopping-cart-container">
+      <TopNavbar/>
+      <Container>
+        <CartTable/>
+      </Container>
     </div>
+
   )
 }

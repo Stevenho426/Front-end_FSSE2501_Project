@@ -3,12 +3,16 @@ import TopNavbar from "../../component/TopNavbar";
 import {type FormEvent, useState} from "react";
 import {GoogleLoginButton} from "react-social-login-buttons";
 import * as FirebaseAuthService from "../../../authService/FirebaseAuthService.ts"
-import {useRouter} from "@tanstack/react-router";
+import {useNavigate,useSearch} from "@tanstack/react-router";
+
 
 export default function LoginPage() {
 
-  const [isLoginFailed, setisLoginFailed] = useState<boolean>(false);
-  const router = useRouter();
+  const [isLoginFailed, setIsLoginFailed] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const search = useSearch({from: "/login/"});
+  const redirectTo = (search as unknown as { redirect?: string }).redirect || "/";
+
 
   const handleSignInWithEmailAndPassword = async (event:FormEvent<HTMLFormElement>)=>{
     event.preventDefault();
@@ -23,11 +27,14 @@ export default function LoginPage() {
     const loginResult= await FirebaseAuthService.signInWithEmailAndPassword(email, password);
 
     if(loginResult){
-      router.history.back();
+      // router.history.back();
+      navigate({ to: redirectTo, replace: true });
     }else {
-      setisLoginFailed(true);
+      setIsLoginFailed(true);
     }
+
   }
+
     return(
       <>
         <TopNavbar/>
