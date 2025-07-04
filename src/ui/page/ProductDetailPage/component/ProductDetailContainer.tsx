@@ -2,7 +2,7 @@ import {Button, Stack} from "react-bootstrap";
 import mockData from "../response.json"
 import QuantitySelector from "../../../component/QuantitySelector";
 import {useContext, useEffect, useState} from "react";
-import type {GetProductByPidDto} from "../../../../data/GetProductByPidDto.ts";
+import type {GetProductByPidDtoType} from "../../../../data/GetProductByPidDto.type.ts";
 import * as ProductApi from "../../../../api/ProductApi.tsx"
 import {useNavigate} from "@tanstack/react-router";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -16,7 +16,7 @@ type Props = {
 
 export default function ProductDetailContainer ({pid}:Props) {
 
-  const [getProductByPidDto, setGetProductByPidDto] = useState<GetProductByPidDto|undefined>(undefined);
+  const [getProductByPidDto, setGetProductByPidDto] = useState<GetProductByPidDtoType|undefined>(undefined);
   const [quantity, setQuantity] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [isAddingToCart, setIsAddingToCart] = useState(false);

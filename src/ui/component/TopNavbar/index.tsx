@@ -1,5 +1,5 @@
 import {Link} from "@tanstack/react-router";
-import {Button, Container, Nav, Navbar, NavItem} from "react-bootstrap";
+import {Button, Nav, Navbar, NavItem} from "react-bootstrap";
 import {useContext} from "react";
 import {LoginUserContext} from "../../../../context/loginUserContext.ts";
 import * as FirebaseAuthService from "../../../authService/FirebaseAuthService.ts"
@@ -19,7 +19,7 @@ export default function TopNavbar() {
       return (
         <div className="d-flex align-items-baseline">
           <div className="mx-1">
-            <Link to='/shoppingcart'>
+            <Link to={"/shoppingcart"}>
               <Button>
                 <FontAwesomeIcon icon={faCartShopping} style={{color: "#ffffff",}} />
               </Button>
@@ -42,7 +42,7 @@ export default function TopNavbar() {
       } else {
         return (
           <
-            Link to='/login'
+            Link to={"/login"}
                  className="text-white p-4 align-bottom text-decoration-none "
           >
             Login
@@ -54,7 +54,6 @@ export default function TopNavbar() {
   return (
 
     <Navbar bg="secondary gradient" data-bs-theme="dark" >
-      <Container>
         <Navbar.Brand >
           <Link to='/' className="text-white p-4 align-bottom text-decoration-none">
             Online Shop
@@ -72,7 +71,6 @@ export default function TopNavbar() {
             {renderLoginButton()}
           </NavItem>
         </Nav>
-      </Container>
     </Navbar>
 
 

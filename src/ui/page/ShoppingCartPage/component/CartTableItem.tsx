@@ -1,4 +1,4 @@
-import type {GetCartItemsDto} from "../../../../data/GetCartItemsDto.ts";
+import type {GetCartItemsDtoType} from "../../../../data/GetCartItemsDto.type.ts";
 import QuantitySelector from "../../../component/QuantitySelector";
 import {useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -7,7 +7,7 @@ import * as CartItemsApi from "../../../../api/CartItemsApi.tsx"
 import {Button} from "react-bootstrap";
 
 type Props  = {
-  cartItemDto: GetCartItemsDto;
+  cartItemDto: GetCartItemsDtoType;
   setIsDeletedCartItem: (deleted: boolean)=>void;
   setIsUpdatedCartItem: (updated: boolean)=>void;
 }
@@ -61,12 +61,14 @@ export default function CartTableItem ({cartItemDto, setIsDeletedCartItem, setIs
       <td>{cartItemDto.pid}</td>
       <td>{cartItemDto.name}</td>
       <td>${cartItemDto.price.toLocaleString()}</td>
+      <td>
       <QuantitySelector
         handleQuantityMinusOne={handleQuantityMinusOne}
         handleQuantityPlusOne={handleQuantityPlusOne}
         quantity={quantity}
         isUpdatingCart={isUpdatingCart}
       />
+      </td>
       <td>${subTotal.toLocaleString()}</td>
       <td>
         <Button variant="danger" onClick={handleRemoveCartItem} disabled={isDeletingCartItem}>

@@ -1,7 +1,7 @@
 import TopNavbar from "../../component/TopNavbar";
 import {Container} from "react-bootstrap";
 import CartTable from "./component/CartTable.tsx";
-import {useNavigate, useRouterState} from "@tanstack/react-router";
+import {useNavigate} from "@tanstack/react-router";
 import {useContext, useEffect} from "react";
 import {LoginUserContext} from "../../../../context/loginUserContext.ts";
 
@@ -9,7 +9,6 @@ import {LoginUserContext} from "../../../../context/loginUserContext.ts";
 export default function ShoppingCartPage() {
 
   const loginUser = useContext(LoginUserContext);
-  const {location}=useRouterState();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,13 +23,10 @@ export default function ShoppingCartPage() {
 
 
   return (
-
-    <div className="shopping-cart-container">
+    <Container>
       <TopNavbar/>
-      <Container>
-        <CartTable/>
-      </Container>
-    </div>
+      <CartTable/>
+    </Container>
 
   )
 }

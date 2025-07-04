@@ -1,9 +1,9 @@
 import {Button, Card} from "react-bootstrap";
-import type {GetAllProductDto} from "../../../../data/GetAllProductDto.ts";
+import type {GetAllProductDtoType} from "../../../../data/GetAllProductDto.type.ts";
 import {Link} from "@tanstack/react-router";
 
 type Props ={
-  getAllProductDto:GetAllProductDto;
+  getAllProductDto:GetAllProductDtoType;
   pid:string;
 }
 

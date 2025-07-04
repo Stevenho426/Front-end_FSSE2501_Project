@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as TopnavbarIndexRouteImport } from './routes/topnavbar/index'
 import { Route as ThankyouIndexRouteImport } from './routes/thankyou/index'
 import { Route as ShoppingcartIndexRouteImport } from './routes/shoppingcart/index'
 import { Route as LoginIndexRouteImport } from './routes/login/index'
@@ -21,11 +20,6 @@ import { Route as CheckoutTransactionIdRouteImport } from './routes/checkout/$tr
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TopnavbarIndexRoute = TopnavbarIndexRouteImport.update({
-  id: '/topnavbar/',
-  path: '/topnavbar/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ThankyouIndexRoute = ThankyouIndexRouteImport.update({
@@ -67,7 +61,6 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginIndexRoute
   '/shoppingcart': typeof ShoppingcartIndexRoute
   '/thankyou': typeof ThankyouIndexRoute
-  '/topnavbar': typeof TopnavbarIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -77,7 +70,6 @@ export interface FileRoutesByTo {
   '/login': typeof LoginIndexRoute
   '/shoppingcart': typeof ShoppingcartIndexRoute
   '/thankyou': typeof ThankyouIndexRoute
-  '/topnavbar': typeof TopnavbarIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -88,7 +80,6 @@ export interface FileRoutesById {
   '/login/': typeof LoginIndexRoute
   '/shoppingcart/': typeof ShoppingcartIndexRoute
   '/thankyou/': typeof ThankyouIndexRoute
-  '/topnavbar/': typeof TopnavbarIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -100,7 +91,6 @@ export interface FileRouteTypes {
     | '/login'
     | '/shoppingcart'
     | '/thankyou'
-    | '/topnavbar'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -110,7 +100,6 @@ export interface FileRouteTypes {
     | '/login'
     | '/shoppingcart'
     | '/thankyou'
-    | '/topnavbar'
   id:
     | '__root__'
     | '/'
@@ -120,7 +109,6 @@ export interface FileRouteTypes {
     | '/login/'
     | '/shoppingcart/'
     | '/thankyou/'
-    | '/topnavbar/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -131,7 +119,6 @@ export interface RootRouteChildren {
   LoginIndexRoute: typeof LoginIndexRoute
   ShoppingcartIndexRoute: typeof ShoppingcartIndexRoute
   ThankyouIndexRoute: typeof ThankyouIndexRoute
-  TopnavbarIndexRoute: typeof TopnavbarIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -141,13 +128,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/topnavbar/': {
-      id: '/topnavbar/'
-      path: '/topnavbar'
-      fullPath: '/topnavbar'
-      preLoaderRoute: typeof TopnavbarIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/thankyou/': {
@@ -203,7 +183,6 @@ const rootRouteChildren: RootRouteChildren = {
   LoginIndexRoute: LoginIndexRoute,
   ShoppingcartIndexRoute: ShoppingcartIndexRoute,
   ThankyouIndexRoute: ThankyouIndexRoute,
-  TopnavbarIndexRoute: TopnavbarIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

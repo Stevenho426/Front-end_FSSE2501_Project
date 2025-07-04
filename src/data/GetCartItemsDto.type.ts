@@ -1,4 +1,4 @@
-export interface GetCartItemsDto {
+export interface GetCartItemsDtoType {
   pid: string;
   name: string;
   imageUrl: string;

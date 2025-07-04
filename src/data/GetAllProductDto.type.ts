@@ -1,4 +1,4 @@
-export interface GetAllProductDto {
+export interface GetAllProductDtoType {
   pid:      number;
   name:     string;
   imageUrl: string;

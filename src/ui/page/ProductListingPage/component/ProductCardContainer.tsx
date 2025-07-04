@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import type {GetAllProductDto} from "../../../../data/GetAllProductDto.ts";
+import type {GetAllProductDtoType} from "../../../../data/GetAllProductDto.type.ts";
 import {Col, Container, Row} from "react-bootstrap"
 import ProductCard from "./ProductCard.tsx";
 import * as ProductApi from "../../../../api/ProductApi.tsx";
@@ -18,7 +18,7 @@ export default function ProductCardContainer () {
   }
 
 
-  const [getAllProductDtoList, setGetAllProductDto] = useState<GetAllProductDto[]|undefined>(undefined);
+  const [getAllProductDtoList, setGetAllProductDto] = useState<GetAllProductDtoType[]|undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function ProductCardContainer () {
 
           ))): getAllProductDtoList? (
 
-          getAllProductDtoList.map((getAllProductDto:GetAllProductDto)=>(
+          getAllProductDtoList.map((getAllProductDto:GetAllProductDtoType)=>(
             <Col sm={6} md={4} lg={3} className="mb-4">
               <ProductCard getAllProductDto={getAllProductDto} pid={getAllProductDto.pid.toString()} />
             </Col>
@@ -57,7 +57,7 @@ export default function ProductCardContainer () {
   //    {!isLoading && getAllProductDtoList ? (
   //      <Container className="mt-3">
   //        <Row>
-  //        {getAllProductDtoList.map((getAllProductDto:GetAllProductDto)=>(
+  //        {getAllProductDtoList.map((getAllProductDto:GetAllProductDtoType)=>(
   //          <Col key={getAllProductDto.pid} >
   //           <ProductCard getAllProductDto={getAllProductDto} pid={getAllProductDto.pid.toString()} />
   //          </Col>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import {getAuthConfig} from "../authService/FirebaseAuthService.ts";
-import type {GetCartItemsDto} from "../data/GetCartItemsDto.ts";
+import type {GetCartItemsDtoType} from "../data/GetCartItemsDto.type.ts";
 
 const baseUrl="http://localhost:8080";
 
@@ -15,7 +15,7 @@ export async function putCartItem(pid:string, quantity:number) {
 
 export async function getCartItemsDtoList() {
 
-  const response = await axios.get<GetCartItemsDto[]>(
+  const response = await axios.get<GetCartItemsDtoType[]>(
     `${baseUrl}/cart/items`,
     await getAuthConfig()
   )
