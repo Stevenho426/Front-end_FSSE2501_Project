@@ -16,7 +16,6 @@ import { Route as LoginIndexRouteImport } from './routes/login/index'
 import { Route as ErrorIndexRouteImport } from './routes/error/index'
 import { Route as ThankyouTransactionIdRouteImport } from './routes/thankyou/$transactionId'
 import { Route as ProductProductIdRouteImport } from './routes/product/$productId'
-import { Route as PaymentTransactionIdRouteImport } from './routes/payment/$transactionId'
 import { Route as CheckoutTransactionIdRouteImport } from './routes/checkout/$transactionId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -54,11 +53,6 @@ const ProductProductIdRoute = ProductProductIdRouteImport.update({
   path: '/product/$productId',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PaymentTransactionIdRoute = PaymentTransactionIdRouteImport.update({
-  id: '/payment/$transactionId',
-  path: '/payment/$transactionId',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const CheckoutTransactionIdRoute = CheckoutTransactionIdRouteImport.update({
   id: '/checkout/$transactionId',
   path: '/checkout/$transactionId',
@@ -68,7 +62,6 @@ const CheckoutTransactionIdRoute = CheckoutTransactionIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/checkout/$transactionId': typeof CheckoutTransactionIdRoute
-  '/payment/$transactionId': typeof PaymentTransactionIdRoute
   '/product/$productId': typeof ProductProductIdRoute
   '/thankyou/$transactionId': typeof ThankyouTransactionIdRoute
   '/error': typeof ErrorIndexRoute
@@ -79,7 +72,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/checkout/$transactionId': typeof CheckoutTransactionIdRoute
-  '/payment/$transactionId': typeof PaymentTransactionIdRoute
   '/product/$productId': typeof ProductProductIdRoute
   '/thankyou/$transactionId': typeof ThankyouTransactionIdRoute
   '/error': typeof ErrorIndexRoute
@@ -91,7 +83,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/checkout/$transactionId': typeof CheckoutTransactionIdRoute
-  '/payment/$transactionId': typeof PaymentTransactionIdRoute
   '/product/$productId': typeof ProductProductIdRoute
   '/thankyou/$transactionId': typeof ThankyouTransactionIdRoute
   '/error/': typeof ErrorIndexRoute
@@ -104,7 +95,6 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/checkout/$transactionId'
-    | '/payment/$transactionId'
     | '/product/$productId'
     | '/thankyou/$transactionId'
     | '/error'
@@ -115,7 +105,6 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/checkout/$transactionId'
-    | '/payment/$transactionId'
     | '/product/$productId'
     | '/thankyou/$transactionId'
     | '/error'
@@ -126,7 +115,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/checkout/$transactionId'
-    | '/payment/$transactionId'
     | '/product/$productId'
     | '/thankyou/$transactionId'
     | '/error/'
@@ -138,7 +126,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CheckoutTransactionIdRoute: typeof CheckoutTransactionIdRoute
-  PaymentTransactionIdRoute: typeof PaymentTransactionIdRoute
   ProductProductIdRoute: typeof ProductProductIdRoute
   ThankyouTransactionIdRoute: typeof ThankyouTransactionIdRoute
   ErrorIndexRoute: typeof ErrorIndexRoute
@@ -198,13 +185,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductProductIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/payment/$transactionId': {
-      id: '/payment/$transactionId'
-      path: '/payment/$transactionId'
-      fullPath: '/payment/$transactionId'
-      preLoaderRoute: typeof PaymentTransactionIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/checkout/$transactionId': {
       id: '/checkout/$transactionId'
       path: '/checkout/$transactionId'
@@ -218,7 +198,6 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CheckoutTransactionIdRoute: CheckoutTransactionIdRoute,
-  PaymentTransactionIdRoute: PaymentTransactionIdRoute,
   ProductProductIdRoute: ProductProductIdRoute,
   ThankyouTransactionIdRoute: ThankyouTransactionIdRoute,
   ErrorIndexRoute: ErrorIndexRoute,
