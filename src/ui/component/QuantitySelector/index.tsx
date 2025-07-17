@@ -3,7 +3,7 @@ import {Button} from "react-bootstrap";
 type Props = {
   handleQuantityMinusOne:()=>void;
   handleQuantityPlusOne:()=>void;
-  quantity:number;
+  quantity:number|undefined;
   isUpdatingCart?:boolean
 }
 

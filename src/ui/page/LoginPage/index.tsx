@@ -27,12 +27,10 @@ export default function LoginPage() {
     const loginResult= await FirebaseAuthService.signInWithEmailAndPassword(email, password);
 
     if(loginResult){
-      // router.history.back();
       navigate({ to: redirectTo, replace: true });
     }else {
       setIsLoginFailed(true);
     }
-
   }
 
     return(

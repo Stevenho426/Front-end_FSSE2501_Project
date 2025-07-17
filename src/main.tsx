@@ -7,6 +7,7 @@ import * as FirebaseAuthService from "./authService/FirebaseAuthService.ts";
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
 
+
 // Create a new router instance
 const router = createRouter({ routeTree })
 

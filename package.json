@@ -19,6 +19,7 @@
     "@tanstack/react-router-devtools": "^1.121.16",
     "axios": "^1.10.0",
     "bootstrap": "^5.3.6",
+    "date-fns": "^4.1.0",
     "firebase": "^11.9.1",
     "react": "^19.1.0",
     "react-bootstrap": "^2.10.10",

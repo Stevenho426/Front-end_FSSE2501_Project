@@ -1,15 +1,26 @@
-import NavList from "../../component/TopNavbar";
-import {useLocation} from "@tanstack/react-router";
+import {Container} from "react-bootstrap";
+import TopNavbar from "../../component/TopNavbar";
+import TransactionSummary from "./component/TransactionSummary.tsx";
+import {useParams} from "@tanstack/react-router";
+import {useContext} from "react";
+import {LoginUserContext} from "../../../../context/LoginUserContext.ts";
 
 export default function ThankYouPage() {
-  const location = useLocation();
+
+  const {transactionId} = useParams({from:"/thankyou/$transactionId"})
+
+  const loginUser = useContext(LoginUserContext);
 
   return (
-    <div className="shopping-cart-container">
-      <NavList/>
-      <h1>Thank You Page!</h1>
-      <h3>Pathname: {location.pathname} </h3>
 
-    </div>
+    <>
+      <TopNavbar/>
+      {
+        loginUser &&
+          <Container>
+            <TransactionSummary tid={transactionId}/>
+          </Container>
+      }
+    </>
   )
 }

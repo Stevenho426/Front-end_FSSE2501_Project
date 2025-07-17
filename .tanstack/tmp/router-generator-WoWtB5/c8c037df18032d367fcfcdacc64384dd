@@ -11,12 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TopnavbarIndexRouteImport } from './routes/topnavbar/index'
+import { Route as ThankyouIndexRouteImport } from './routes/thankyou/index'
 import { Route as ShoppingcartIndexRouteImport } from './routes/shoppingcart/index'
 import { Route as LoginIndexRouteImport } from './routes/login/index'
 import { Route as ErrorIndexRouteImport } from './routes/error/index'
-import { Route as ThankyouTransactionIdRouteImport } from './routes/thankyou/$transactionId'
 import { Route as ProductProductIdRouteImport } from './routes/product/$productId'
-import { Route as PaymentTransactionIdRouteImport } from './routes/payment/$transactionId'
 import { Route as CheckoutTransactionIdRouteImport } from './routes/checkout/$transactionId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -27,6 +26,11 @@ const IndexRoute = IndexRouteImport.update({
 const TopnavbarIndexRoute = TopnavbarIndexRouteImport.update({
   id: '/topnavbar/',
   path: '/topnavbar/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThankyouIndexRoute = ThankyouIndexRouteImport.update({
+  id: '/thankyou/',
+  path: '/thankyou/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShoppingcartIndexRoute = ShoppingcartIndexRouteImport.update({
@@ -44,19 +48,9 @@ const ErrorIndexRoute = ErrorIndexRouteImport.update({
   path: '/error/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ThankyouTransactionIdRoute = ThankyouTransactionIdRouteImport.update({
-  id: '/thankyou/$transactionId',
-  path: '/thankyou/$transactionId',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ProductProductIdRoute = ProductProductIdRouteImport.update({
   id: '/product/$productId',
   path: '/product/$productId',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PaymentTransactionIdRoute = PaymentTransactionIdRouteImport.update({
-  id: '/payment/$transactionId',
-  path: '/payment/$transactionId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CheckoutTransactionIdRoute = CheckoutTransactionIdRouteImport.update({
@@ -68,35 +62,32 @@ const CheckoutTransactionIdRoute = CheckoutTransactionIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/checkout/$transactionId': typeof CheckoutTransactionIdRoute
-  '/payment/$transactionId': typeof PaymentTransactionIdRoute
   '/product/$productId': typeof ProductProductIdRoute
-  '/thankyou/$transactionId': typeof ThankyouTransactionIdRoute
   '/error': typeof ErrorIndexRoute
   '/login': typeof LoginIndexRoute
   '/shoppingcart': typeof ShoppingcartIndexRoute
+  '/thankyou': typeof ThankyouIndexRoute
   '/topnavbar': typeof TopnavbarIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/checkout/$transactionId': typeof CheckoutTransactionIdRoute
-  '/payment/$transactionId': typeof PaymentTransactionIdRoute
   '/product/$productId': typeof ProductProductIdRoute
-  '/thankyou/$transactionId': typeof ThankyouTransactionIdRoute
   '/error': typeof ErrorIndexRoute
   '/login': typeof LoginIndexRoute
   '/shoppingcart': typeof ShoppingcartIndexRoute
+  '/thankyou': typeof ThankyouIndexRoute
   '/topnavbar': typeof TopnavbarIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/checkout/$transactionId': typeof CheckoutTransactionIdRoute
-  '/payment/$transactionId': typeof PaymentTransactionIdRoute
   '/product/$productId': typeof ProductProductIdRoute
-  '/thankyou/$transactionId': typeof ThankyouTransactionIdRoute
   '/error/': typeof ErrorIndexRoute
   '/login/': typeof LoginIndexRoute
   '/shoppingcart/': typeof ShoppingcartIndexRoute
+  '/thankyou/': typeof ThankyouIndexRoute
   '/topnavbar/': typeof TopnavbarIndexRoute
 }
 export interface FileRouteTypes {
@@ -104,46 +95,42 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/checkout/$transactionId'
-    | '/payment/$transactionId'
     | '/product/$productId'
-    | '/thankyou/$transactionId'
     | '/error'
     | '/login'
     | '/shoppingcart'
+    | '/thankyou'
     | '/topnavbar'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/checkout/$transactionId'
-    | '/payment/$transactionId'
     | '/product/$productId'
-    | '/thankyou/$transactionId'
     | '/error'
     | '/login'
     | '/shoppingcart'
+    | '/thankyou'
     | '/topnavbar'
   id:
     | '__root__'
     | '/'
     | '/checkout/$transactionId'
-    | '/payment/$transactionId'
     | '/product/$productId'
-    | '/thankyou/$transactionId'
     | '/error/'
     | '/login/'
     | '/shoppingcart/'
+    | '/thankyou/'
     | '/topnavbar/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CheckoutTransactionIdRoute: typeof CheckoutTransactionIdRoute
-  PaymentTransactionIdRoute: typeof PaymentTransactionIdRoute
   ProductProductIdRoute: typeof ProductProductIdRoute
-  ThankyouTransactionIdRoute: typeof ThankyouTransactionIdRoute
   ErrorIndexRoute: typeof ErrorIndexRoute
   LoginIndexRoute: typeof LoginIndexRoute
   ShoppingcartIndexRoute: typeof ShoppingcartIndexRoute
+  ThankyouIndexRoute: typeof ThankyouIndexRoute
   TopnavbarIndexRoute: typeof TopnavbarIndexRoute
 }
 
@@ -161,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/topnavbar'
       fullPath: '/topnavbar'
       preLoaderRoute: typeof TopnavbarIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/thankyou/': {
+      id: '/thankyou/'
+      path: '/thankyou'
+      fullPath: '/thankyou'
+      preLoaderRoute: typeof ThankyouIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/shoppingcart/': {
@@ -184,25 +178,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ErrorIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/thankyou/$transactionId': {
-      id: '/thankyou/$transactionId'
-      path: '/thankyou/$transactionId'
-      fullPath: '/thankyou/$transactionId'
-      preLoaderRoute: typeof ThankyouTransactionIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/product/$productId': {
       id: '/product/$productId'
       path: '/product/$productId'
       fullPath: '/product/$productId'
       preLoaderRoute: typeof ProductProductIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/payment/$transactionId': {
-      id: '/payment/$transactionId'
-      path: '/payment/$transactionId'
-      fullPath: '/payment/$transactionId'
-      preLoaderRoute: typeof PaymentTransactionIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/checkout/$transactionId': {
@@ -218,12 +198,11 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CheckoutTransactionIdRoute: CheckoutTransactionIdRoute,
-  PaymentTransactionIdRoute: PaymentTransactionIdRoute,
   ProductProductIdRoute: ProductProductIdRoute,
-  ThankyouTransactionIdRoute: ThankyouTransactionIdRoute,
   ErrorIndexRoute: ErrorIndexRoute,
   LoginIndexRoute: LoginIndexRoute,
   ShoppingcartIndexRoute: ShoppingcartIndexRoute,
+  ThankyouIndexRoute: ThankyouIndexRoute,
   TopnavbarIndexRoute: TopnavbarIndexRoute,
 }
 export const routeTree = rootRouteImport

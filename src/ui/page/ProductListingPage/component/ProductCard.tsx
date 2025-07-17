@@ -10,8 +10,8 @@ type Props ={
 export default function ProductCard ({getAllProductDto}:Props) {
 
   return (
-    <Card style={{ width: '18rem' }} className="justify-content-center">
-      <Card.Img variant="top" src={getAllProductDto.imageUrl} height='300'/>
+    <Card className="justify-content-center border-light">
+      <Card.Img variant="top" src={getAllProductDto.imageUrl} style={{height: "200px", objectFit: "contain"}}/>
       <Card.Body>
         <Card.Title>{getAllProductDto.name}</Card.Title>
         <Card.Text>

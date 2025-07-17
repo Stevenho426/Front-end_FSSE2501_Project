@@ -6,35 +6,55 @@ const baseUrl="http://localhost:8080";
 
 export async function putCartItem(pid:string, quantity:number) {
 
-  await axios.put<void>(
-    `${baseUrl}/cart/items/${pid}/${quantity}`,
-    null,
-    await getAuthConfig()
-  )
+  try {
+    await axios.put<void>(
+      `${baseUrl}/cart/items/${pid}/${quantity}`,
+      null,
+      await getAuthConfig()
+    )
+  }catch (e) {
+    console.log(e);
+    throw e;
+  }
 }
 
 export async function getCartItemsDtoList() {
 
-  const response = await axios.get<GetCartItemsDtoType[]>(
-    `${baseUrl}/cart/items`,
-    await getAuthConfig()
-  )
-  return response.data;
+  try {
+    const response = await axios.get<GetCartItemsDtoType[]>(
+      `${baseUrl}/cart/items`,
+      await getAuthConfig()
+    )
+    return response.data;
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
 }
 
 export async function updateCartQuantity(pid:string, quantity:number){
 
-  await axios.patch<void>(
-    `${baseUrl}/cart/items/${pid}/${quantity}`,
-    null,
-    await getAuthConfig()
-  )
+  try{
+    await axios.patch<void>(
+      `${baseUrl}/cart/items/${pid}/${quantity}`,
+      null,
+      await getAuthConfig()
+    )
+  }catch (e) {
+    console.log(e);
+    throw e;
+  }
 }
 
 export async function removeCartItem(pid:string){
 
-  await axios.delete<void>(
-    `${baseUrl}/cart/items/${pid}`,
-    await getAuthConfig()
-  )
+  try{
+    await axios.delete<void>(
+      `${baseUrl}/cart/items/${pid}`,
+      await getAuthConfig()
+    )
+  }catch (e) {
+    console.log(e);
+    throw e;
+  }
 }

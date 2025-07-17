@@ -21,7 +21,6 @@ export async function getAllProduct() {
 export async function getProductByPid(pid:string) {
 
   try{
-
     const response = await axios.get<GetProductByPidDtoType>(
       `${baseUrl}public/products/${pid}`);
 

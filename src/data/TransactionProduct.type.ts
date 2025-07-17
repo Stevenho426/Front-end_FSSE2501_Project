@@ -4,7 +4,7 @@ export interface TransactionDto {
   datetime: Date;
   status:   string;
   total:    number;
-  transactionProductList:    TransactionProduct[];
+  items:    TransactionProduct[];
 }
 
 export interface TransactionProduct {

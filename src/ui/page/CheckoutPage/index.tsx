@@ -1,9 +1,8 @@
 import {useLocation, useNavigate, useParams} from "@tanstack/react-router";
 import {useContext} from "react";
 import TopNavbar from "../../component/TopNavbar";
-import {Container} from "react-bootstrap";
 import TransactionTable from "./component/TransactionTable.tsx";
-import {LoginUserContext} from "../../../../context/loginUserContext.ts";
+import {LoginUserContext} from "../../../../context/LoginUserContext.ts";
 import LoadingContainer from "../../component/LoadingContainer";
 
 
@@ -24,11 +23,14 @@ export default function CheckoutPage() {
     return <LoadingContainer/>
   }
 
+
   return (
 
-      <Container>
+      <>
         <TopNavbar/>
         <TransactionTable tid={tid}/>
-      </Container>
+      </>
+
+
   )
 }

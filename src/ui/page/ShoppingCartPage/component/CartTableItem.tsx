@@ -5,6 +5,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
 import * as CartItemsApi from "../../../../api/CartItemsApi.tsx"
 import {Button} from "react-bootstrap";
+import {useNavigate} from "@tanstack/react-router";
 
 type Props  = {
   cartItemDto: GetCartItemsDtoType;
@@ -18,45 +19,65 @@ export default function CartTableItem ({cartItemDto, setIsDeletedCartItem, setIs
   const [isUpdatingCart, setIsUpdatingCart] = useState(false);
   const [isDeletingCartItem, setIsDeletingCartItem] = useState(false);
   const [subTotal, setSubTotal] = useState(cartItemDto.price*cartItemDto.cartQuantity);
+  const navigate = useNavigate({from: "/shoppingcart"})
 
   const handleQuantityMinusOne = async ()=>{
-    if(quantity>1){
-      setIsUpdatingCart(true);
-      const updatedQty=quantity-1;
-      const updatedSubtotal = cartItemDto.price*updatedQty;
-      setQuantity(updatedQty);
-      setSubTotal(updatedSubtotal);
-      await CartItemsApi.updateCartQuantity(cartItemDto.pid, updatedQty);
-      setIsUpdatingCart(false);
-      setIsUpdatedCartItem(true);
+
+    try{
+      if(quantity>1){
+        setIsUpdatingCart(true);
+        const updatedQty=quantity-1;
+        const updatedSubtotal = cartItemDto.price*updatedQty;
+        setQuantity(updatedQty);
+        setSubTotal(updatedSubtotal);
+        await CartItemsApi.updateCartQuantity(cartItemDto.pid, updatedQty);
+        setIsUpdatingCart(false);
+        setIsUpdatedCartItem(true);
+      } else{
+        handleRemoveCartItem();
+      }
+    }catch{
+      navigate({to: "/error"});
     }
   }
 
   const handleQuantityPlusOne = async ()=>{
-    if(quantity<cartItemDto.stock){
-      setIsUpdatingCart(true);
-      const updatedQty=quantity+1;
-      const updatedSubtotal = cartItemDto.price*updatedQty;
-      setQuantity(updatedQty);
-      setSubTotal(updatedSubtotal);
-      await CartItemsApi.updateCartQuantity(cartItemDto.pid, updatedQty);
-      setIsUpdatingCart(false);
-      setIsUpdatedCartItem(true);
+
+    try{
+      if(quantity<cartItemDto.stock){
+        setIsUpdatingCart(true);
+        const updatedQty=quantity+1;
+        const updatedSubtotal = cartItemDto.price*updatedQty;
+        setQuantity(updatedQty);
+        setSubTotal(updatedSubtotal);
+        await CartItemsApi.updateCartQuantity(cartItemDto.pid, updatedQty);
+        setIsUpdatingCart(false);
+        setIsUpdatedCartItem(true);
+      }
+    }catch{
+      navigate({to: "/error"});
     }
   }
 
   const handleRemoveCartItem = async ()=>{
-    setIsDeletingCartItem(true);
-    await CartItemsApi.removeCartItem(cartItemDto.pid);
-    setIsDeletingCartItem(false);
-    setIsDeletedCartItem(true);
+    try{
+      setIsDeletingCartItem(true);
+      await CartItemsApi.removeCartItem(cartItemDto.pid);
+      setIsDeletingCartItem(false);
+      setIsDeletedCartItem(true);
+    }catch{
+      navigate({to: "/error"});
+    }
   }
 
 
   return(
     <tr className="normal-row">
       <td>
-        <img src={cartItemDto.imageUrl}/>
+        <img
+          src={cartItemDto.imageUrl}
+          style={{width: "100px" , height: "100px"}}
+        />
       </td>
       <td>{cartItemDto.pid}</td>
       <td>{cartItemDto.name}</td>

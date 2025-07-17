@@ -10,7 +10,10 @@ export default function TransactionTableItem ({transactionProduct}:Props) {
   return(
     <tr className="normal-row">
       <td>
-        <img src={transactionProduct.product.imageUrl}/>
+        <img
+          src={transactionProduct.product.imageUrl}
+          style={{width: "100px", height: "100px"} }
+        />
       </td>
       <td>{transactionProduct.product.pid}</td>
       <td>{transactionProduct.product.name}</td>
@@ -19,5 +22,4 @@ export default function TransactionTableItem ({transactionProduct}:Props) {
       <td>${transactionProduct.subtotal.toLocaleString()}</td>
     </tr>
   )
-
 }

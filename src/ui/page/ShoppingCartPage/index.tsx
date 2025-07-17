@@ -1,9 +1,8 @@
 import TopNavbar from "../../component/TopNavbar";
-import {Container} from "react-bootstrap";
 import CartTable from "./component/CartTable.tsx";
 import {useNavigate} from "@tanstack/react-router";
 import {useContext, useEffect} from "react";
-import {LoginUserContext} from "../../../../context/loginUserContext.ts";
+import {LoginUserContext} from "../../../../context/LoginUserContext.ts";
 
 
 export default function ShoppingCartPage() {
@@ -23,10 +22,10 @@ export default function ShoppingCartPage() {
 
 
   return (
-    <Container>
+    <>
       <TopNavbar/>
       <CartTable/>
-    </Container>
+    </>
 
   )
 }
