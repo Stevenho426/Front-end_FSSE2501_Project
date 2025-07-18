@@ -1,9 +1,10 @@
 import axios from "axios";
 import {getAuthConfig} from "../authService/FirebaseAuthService.ts";
 import type {TransactionDto} from "../data/TransactionProduct.type.ts";
+import getEnvConfig from "../config/env/EnvConfig.ts";
 
 
-const baseUrl = "http://localhost:8080";
+const baseUrl=getEnvConfig().baseUrl;
 
 export async function createNewTransaction() {
 

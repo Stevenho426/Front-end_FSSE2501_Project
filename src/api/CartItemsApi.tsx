@@ -1,8 +1,9 @@
 import axios from "axios";
 import {getAuthConfig} from "../authService/FirebaseAuthService.ts";
 import type {GetCartItemsDtoType} from "../data/GetCartItemsDto.type.ts";
+import getEnvConfig from "../config/env/EnvConfig.ts";
 
-const baseUrl="http://localhost:8080";
+const baseUrl=getEnvConfig().baseUrl;
 
 export async function putCartItem(pid:string, quantity:number) {
 

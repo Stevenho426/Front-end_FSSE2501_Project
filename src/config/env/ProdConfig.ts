@@ -1,3 +1,3 @@
 export default {
-  baseUrl: "{{backend_server_prod_domain}}"
+  baseUrl: "https://api.stevenho.shop"
 }
